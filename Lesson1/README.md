@@ -72,6 +72,11 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 *Освойте синтаксис Markdown [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)*
 
+#### Вам могут помочь дополнения
+
+* [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+* [Markdown lint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
 ### 7. Добавьте ваши изменения на гитхаб и пришлите ссылку преподавателю
 
 ```sh
