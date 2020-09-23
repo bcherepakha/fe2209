@@ -3,6 +3,7 @@
 ## Простые макеты для тренировки верстки
 
 * [ThriveTalk](https://www.figma.com/file/ncfUi5NMZKAblmoavnUCNG/ThriveTalk-Landing-Page-Copy)
+* [BuhOne](https://www.figma.com/file/H25MCLDxyXi2HeqjYcsxsR/Templates-6.-More-on-Figma.info-Copy?node-id=2%3A2)
 * [Denis Novik](https://www.figma.com/file/FFdUU4n0piY6LqljTbbpoz/Free-Landing-Page-Template-Copy?node-id=254%3A515)
 * [Freebie_Coffee](https://www.figma.com/file/bINAYHzCvncjUfK1sZUeoa/Freebie_Coffee-Copy)
 * [XBox](https://www.figma.com/file/xRLNPsBWtVJhquFMtAetil/xbox-Copy)
