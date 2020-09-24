@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+}
+
+.block {
+    background: orange;
+    color: green;
+    width: 300px;
+    height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 20px solid black;
+    padding: 20px;
+    box-sizing: content-box;
+}
+
+.box {
+    box-sizing: border-box;
+}

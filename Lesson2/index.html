@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .block {
+            background: orange;
+            color: green;
+            width: 300px;
+            height: 100px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 20px solid black;
+            padding: 20px;
+            box-sizing: content-box;
+        }
+
+        .box {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="block">Hello, world!</div>
+
+    <div class="block box">Hello, world!</div>
+
+    <div hidden>
+        <span class="block">Hello, world!</span>
+    </div>
+
+    <div>
+        <p>Screen: 1000x200</p>
+
+        <ul>
+            <li>1vw = 1000 / 100 = 10px</li>
+            <li>1vh = 200 / 100 = 2px</li>
+            <li>1vmin = 2px</li>
+            <li>1vmax = 10px</li>
+        </ul>
+
+        <p>Screen: 800x1200</p>
+
+        <ul>
+            <li>1vw = 800 / 100 = 8px</li>
+            <li>1vh = 1200 / 100 = 12px</li>
+            <li>1vmin = 8px</li>
+            <li>1vmax = 12px</li>
+        </ul>
+    </div>
+</body>
+</html>
