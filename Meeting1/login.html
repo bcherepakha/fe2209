@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    <style>
+        .login-form {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 24px 0 0;
+            /* padding: top right bottom left; */
+            /* padding: top/bottom right/left; */
+            /* padding: top right/left bottom; */
+            /* padding: top/bottom/right/left; */
+            /* padding-top: ; */
+            /* padding-bottom: ; */
+            /* padding-left: ; */
+            /* padding-right: ; */
+
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .login-form__label {
+            display: block; /* inline */
+            padding: 0 12px 0;
+        }
+
+        .login-form__label-title {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .login-form__label-input
+        {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 0,2,0 */
+        /* .login-form__label:nth-child(n+2) { */
+        /* 0,2,0 */
+        /* .login-form__label + .login-form__label { */
+        /* 0,2,0 */
+        .login-form__label:not(:first-child) {
+            margin-top: 12px;
+        }
+
+        .login-form__forgot-password {
+            display: block;
+        }
+
+        .login-form__actions {
+            background: #ECF2f5;
+            border-top: 1px solid #ccc;
+            padding: 24px 12px;
+            text-align: justify;
+            font-size: 0;
+            line-height: 0;
+        }
+
+        .login-form__actions::after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+
+        .login-form__remember-label {
+            display: inline-block;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <form class="login-form" action="https://echo.htmlacademy.ru/" method="POST">
+        <label class="login-form__label">
+            <span class="login-form__label-title">Логин:</span>
+            <input class="login-form__label-input" type="text" name="login" autocomplete="on" required>
+        </label>
+        <label class="login-form__label">
+            <span class="login-form__label-title">Пароль:</span>
+            <input class="login-form__label-input" type="password" name="password" autocomplete="on" required>
+            <a class="login-form__forgot-password" href="#">Забыли пароль?</a>
+        </label>
+        <div class="login-form__actions">
+            <label class="login-form__remember-label">
+                <input type="checkbox" name="remember">Запомнить меня
+            </label>
+            <button type="submit">Войти</button>
+        </div>
+    </form>
+</body>
+</html>

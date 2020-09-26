@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <form class="feedback-form" method="POST" action="https://echo.htmlacademy.ru/">
+        <div class="feedback-form__title">Формат обратной связи</div>
+        <label class="feedback-form__label">
+            <span class="feedback-form__label-title">Ваше имя:</span>
+            <input
+                placeholder="login"
+                class="feedback-form__label-input"
+                type="text"
+                name="username"
+                autocomplete="on"
+                required>
+        </label>
+        <label class="feedback-form__label">
+            <span class="feedback-form__label-title">Ваш рабочий стаж:</span>
+            <input
+                class="feedback-form__label-input"
+                type="text"
+                inputmode="numeric"
+                name="q"
+                autocomplete="on"
+                required>
+        </label>
+        <label class="feedback-form__label">
+            <span class="feedback-form__label-title">Ваше имя:</span>
+            <input
+                class="feedback-form__label-input"
+                type="email"
+                name="email"
+                autocomplete="on"
+                value="hello@gmail.com"
+                required>
+        </label>
+        <label class="feedback-form__label">
+            <span class="feedback-form__label-title">Текст сообщения:</span>
+            <textarea placeholder="Enter the text" name="text" autocomplete="on" required></textarea>
+        </label>
+        <label class="feedback-form__label">
+            <span class="feedback-form__label-title">Выбор товара:</span>
+            <select name="qwerty[]" multiple>
+                <option value="v1">Товар #1</option>
+                <option value="v2">Товар #2</option>
+                <optgroup label="Group">
+                    <option value="v3">Товар #3</option>
+                    <option value="v4">Товар #4</option>
+                </optgroup>
+            </select>
+        </label>
+        <fieldset>
+            <legend>Какой сетью вы пользуетесь?</legend>
+            <label>
+                <input type="checkbox" name="fb"> Fb
+            </label>
+            <label>
+                <input type="checkbox" name="tw"> Tw
+            </label>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>Ваш возраст</legend>
+            <label>
+                <input type="radio" name="age" value="10-"> less than 10
+            </label>
+            <label>
+                <input type="radio" name="age" value="10-20"> 10-20
+            </label>
+            <label>
+                <input type="radio" name="age" value="20-30"> 20-30
+            </label>
+            <label>
+                <input type="radio" name="age" value="30-40"> 30-40
+            </label>
+            <label>
+                <input type="radio" name="age" value="40-50"> 40-50
+            </label>
+        </fieldset>
+
+        <div>
+            <button type="submit">Отправить</button>
+        </div>
+    </form>
+</body>
+</html>
