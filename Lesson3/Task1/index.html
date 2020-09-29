@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple layout</title>
+    <style>
+        body {
+            margin: 0;
+            --logo-width: 100px;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            height: 100px;
+            background: #ccc;
+        }
+
+        .logo {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: var(--logo-width);
+            background: orange;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            background: red;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            display: flex;
+            background: #ccc;
+
+            height: 450px;
+        }
+
+        .wrapper {
+            flex-grow: 65;
+            flex-shrink: 0;
+            flex-basis: var(--logo-width);
+
+            background: #ADFDD5;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 300px;
+
+            display: flex;
+        }
+
+        .news {
+            background: chocolate;
+            flex-basis: 100px;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
+        .list {
+            background: cornsilk;
+            flex-basis: auto;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+
+        .footer {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+
+            background: orchid;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav {
+            flex-grow: 35;
+            flex-shrink: 0;
+            flex-basis: 0;
+
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">LOGO</div>
+        <div class="menu">MENU</div>
+    </div>
+    <div class="content">
+        <div class="wrapper">
+            <div class="main">
+                <div class="news">NEWS FEED</div>
+                <div class="list">LIST OF SOMETHING</div>
+            </div>
+            <div class="footer">
+                FOOTER
+            </div>
+        </div>
+        <div class="nav">NAVIGATION BAR</div>
+    </div>
+</body>
+</html>
