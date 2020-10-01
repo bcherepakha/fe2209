@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simple layout</title>
     <style>
+        html {
+            height: 100%;
+        }
+
         body {
             margin: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 100%;
+
             --logo-width: 100px;
         }
 
         .header {
+            flex: 0 0 100px;
+
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            height: 100px;
+            /* height: 100px; */
             background: #ccc;
         }
 
@@ -46,7 +58,9 @@
             display: flex;
             background: #ccc;
 
-            height: 450px;
+            flex: 1 0 auto;
+
+            /* height: 450px; */
         }
 
         .wrapper {
@@ -61,9 +75,9 @@
         }
 
         .main {
-            flex-grow: 0;
+            flex-grow: 1;
             flex-shrink: 0;
-            flex-basis: 300px;
+            flex-basis: auto;
 
             display: flex;
         }
@@ -80,12 +94,14 @@
             flex-basis: auto;
             flex-grow: 1;
             flex-shrink: 1;
+
+            /* min-height: 300vh; */
         }
 
         .footer {
-            flex-grow: 1;
-            flex-shrink: 1;
-            flex-basis: auto;
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 150px;
 
             background: orchid;
 
