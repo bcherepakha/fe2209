@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviasales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="aviasales.css">
+</head>
+<body>
+    <div class="wrapper">
+        <aside class="aside">
+            <form class="transplants">
+                <div class="transplants__title">Количество пересадок</div>
+                <label class="transplants__item">
+                    <input
+                        class="transplants__item-input"
+                        type="checkbox"
+                        name="transplants_all"
+                        data-value="all">
+                    <span class="transplants__item-value"></span>
+                    <span class="transplants__item-name">Все</span>
+                </label>
+                <label class="transplants__item">
+                    <input
+                        class="transplants__item-input"
+                        type="checkbox"
+                        name="transplants0"
+                        data-value="0">
+                    <span class="transplants__item-value"></span>
+                    <span class="transplants__item-name">Без пересадок</span>
+                </label>
+                <label class="transplants__item">
+                    <input
+                        class="transplants__item-input"
+                        type="checkbox"
+                        name="transplants1"
+                        data-value="1">
+                    <span class="transplants__item-value"></span>
+                    <span class="transplants__item-name">1 пересадка</span>
+                </label>
+                <label class="transplants__item">
+                    <input
+                        class="transplants__item-input"
+                        type="checkbox"
+                        name="transplants2"
+                        data-value="2"
+                        checked>
+                    <span class="transplants__item-value"></span>
+                    <span class="transplants__item-name">2 пересадки</span>
+                </label>
+                <label class="transplants__item">
+                    <input
+                        class="transplants__item-input"
+                        type="checkbox"
+                        name="transplants3"
+                        data-value="3">
+                    <span class="transplants__item-value"></span>
+                    <span class="transplants__item-name">3 пересадки</span>
+                </label>
+            </form>
+        </aside>
+        <main class="main">
+            <form class="sort">
+                <label class="sort__item">
+                    <input class="visibility-hidden sort__item-input" type="radio" name="sorting" value="cheap" checked>
+                    <span class="sort__item-name">Самый дешевый</span>
+                </label>
+                <label class="sort__item">
+                    <input class="visibility-hidden sort__item-input" type="radio" name="sorting" value="speed">
+                    <span class="sort__item-name">Самый быстрый</span>
+                </label>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
