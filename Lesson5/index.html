@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive image</title>
+    <style>
+        .block {
+            width: 100%;
+        }
+
+        .block img {
+            width: 100%;
+            display: block;
+        }
+
+        .row {
+            margin: 10px 0;
+            display: flex;
+        }
+
+        .row .block:not(:first-child) {
+            margin-left: 10px;
+        }
+
+        @media (max-width: 1700px) {
+            .row .block {
+                flex: 1 0 40%;
+            }
+
+            .row .block:last-child {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .row {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- screen: 1000, DPR: 1 => 1000 => img2 -->
+<!-- screen: 1000, DPR: 2 => 2000 => img1 -->
+<!-- screen: 500, DPR: 1 => img3 -->
+<!-- screen: 500, DPR: 2 => img2 -->
+<!-- screen: 320, DPR: 2 => img2 | img3 -->
+    <div class="block">
+        <img
+            src="http://lorempixel.com/g/1920/800/abstract/1920x800/"
+            alt=""
+            srcset="http://lorempixel.com/g/1920/800/abstract/1920x800/ 1920w,
+            http://lorempixel.com/g/1000/600/animals/1000x600/ 1000w,
+            http://lorempixel.com/g/500/300/business/500x300/ 500w">
+    </div>
+
+<!-- screen: 1700, DPR: 2 => ~1700 -->
+<!-- screen: 640px, DPR: 2 => ~640px -->
+    <div class="row">
+        <div class="block">
+            <img
+                src="http://lorempixel.com/g/1920/800/abstract/1/?a=1#q"
+                sizes="(max-width: 1700px) 50vw, 33vw"
+                srcset="http://lorempixel.com/g/2920/800/abstract/1/ 2920w,
+                http://lorempixel.com/g/1700/700/animals/1/ 1700w,
+                http://lorempixel.com/g/500/300/business/1/ 500w"
+                alt="">
+        </div>
+        <div class="block">
+            <img
+                src="http://lorempixel.com/g/1920/800/abstract/2/"
+                sizes="(max-width: 1700px) 50vw, 33vw"
+                srcset="http://lorempixel.com/g/2920/800/abstract/2/ 2920w,
+                http://lorempixel.com/g/1700/700/animals/2/ 1700w,
+                http://lorempixel.com/g/500/300/business/2/ 500w"
+                alt="">
+        </div>
+        <div class="block">
+            <img
+                src="http://lorempixel.com/g/1920/800/abstract/3/"
+                srcset="http://lorempixel.com/g/2920/800/abstract/3/ 2920w,
+                http://lorempixel.com/g/1700/700/animals/3/ 1700w,
+                http://lorempixel.com/g/500/300/business/3/ 500w"
+                alt="">
+        </div>
+    </div>
+
+</body>
+</html>
