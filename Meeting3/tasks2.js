@@ -7,16 +7,21 @@ const ask = function(message, yesHandler, noHandler) {
   } else {
     noHandler();
   }
+
+  return ; // undefined
 }
 
-// ask(
-//     'Все понятно?',
-//     function() { return console.log('Великолепно!'); },
-//     () => console.log('Надо бы повторить материал...')
-//   );
+ask(
+    'Все понятно?',
+    function yesHandler() { return console.log('Великолепно!'); },
+    () => {
+      return console.log('Надо бы повторить материал...');
+    }
+    // () => console.log('Надо бы повторить материал...')
+  );
 
-// ask(
-//   'А может не понятно?',
-//   function() { console.log('Может!'); /* return undefined; */ },
-//   () => { console.log('Не может...'); /* return undefined; */ }
-// );
+ask(
+  'А может не понятно?',
+  function() { console.log('Может!'); /* return undefined; */ },
+  () => { console.log('Не может...'); /* return undefined; */ }
+);
