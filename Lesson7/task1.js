@@ -46,7 +46,7 @@ function askAndLogNumber() {
     }
 }
 
-logWhileUser();
+// logWhileUser();
 
 function logWhileUser() {
     let userAgreed = true;
@@ -65,6 +65,42 @@ function logWhileUser() {
         i++;
     } while (confirm('Continue?'));
 }
+
+function getNextSimple(n) {
+    // let result = n + 1;
+
+    // while (!isSimple(result)) {
+    //     result++;
+    // }
+
+    let result = n;
+
+    do {
+        result++;
+    } while(!isSimple(result));
+
+    return result;
+}
+
+function logSimpleWhileUser() {
+    // let n = 0;
+
+    // do {
+    //     n = getNextSimple(n);
+    //     console.log(n);
+    // } while(confirm('Continue'));
+
+    let n = 1;
+
+    console.log(n);
+
+    while(confirm('Continue')) {
+        n = getNextSimple(n);
+        console.log(n);
+    }
+}
+
+logSimpleWhileUser();
 
 // isSimple(10); // false;
 // isSimple(3); // true;
