@@ -40,6 +40,7 @@ console.log('task 4', toggleClass('a c', 'b') === 'a c b');
 // функция формирования классов из объекта
 // Ключами обьекта, являются имена классов, значениями булевые true/false
 // если стоит true, то класс добавляется к строке, если false, то не добавляется
+// Object.keys, Object.values, Object.entries, for in
 function cn(className, classObj) {
 
 }
@@ -57,3 +58,12 @@ function fib(firstElement, lastElement, elementsCount = 10) {
 
 console.log('task 6', fib(1, 1, 10).join(',') === [1, 1, 2, 3, 5, 8, 13, 21, 34, 55].join(','));
 console.log('task 6', fib(2, 4, 4).join(',') === [2, 4, 6, 10].join(','));
+
+// task 7
+// Найти произведение элементов массива
+function mult(arr) {
+
+}
+
+console.log('task 7', mult([1, 2, 3, 1]) === 1*2*3*1 );
+console.log('task 7', mult([1, 3, 3, 5]) === 1*3*3*5 );
