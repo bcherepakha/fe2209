@@ -38,15 +38,6 @@ function getCalendarDaysListElement() {
 function clearCalendarDysList() {
     const listElement = getCalendarDaysListElement();
 
-    console.log(listElement.innerHTML);
-    console.log(listElement.innerText);
-
-    // listElement.innerHTML = `
-    // <li class="calendar-day calendar-day--not-in-month">28</li>
-    // <li class="calendar-day calendar-day--not-in-month">29</li>
-    // <li class="calendar-day calendar-day--not-in-month">30</li>
-    // `;
-
     listElement.innerText = '';
 }
 
@@ -60,7 +51,6 @@ function createDayElement(elementDate, curentMonthNumber) {
     rootElement.setAttribute('class', 'calendar-day');
 
     if (elementDate.getMonth() !== curentMonthNumber) {
-        // rootElement.className += ' calendar-day--not-in-month';
         rootElement.classList.add('calendar-day--not-in-month');
     }
 

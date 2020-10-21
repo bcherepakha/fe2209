@@ -104,3 +104,25 @@ logSimpleWhileUser();
 
 // isSimple(10); // false;
 // isSimple(3); // true;
+
+// 3. Вывести в консоль числа кратные k, в диапазоне от 1 до n. => in home
+function logNumbers3(k, n) {
+    for (let i=1; i <=n; i++) {
+        if (i % k === 0) {
+            console.log(i);
+        }
+    }
+}
+
+// Выводить в консоль простые числа от 1 до n до тех пор,
+// пока пользователь не скажет хватить.
+
+function logWhileUser() {
+    let i = 0;
+
+    do {
+        i = getNextSimple(i);
+        console.log(i);
+    // } while(!confirm('Хватит?'));
+    } while (confirm('Продолжим?'));
+}

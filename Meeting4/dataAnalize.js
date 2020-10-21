@@ -148,3 +148,36 @@ console.log(
         })
     )
 );
+
+function getCentury(person) {
+    return Math.ceil(person.died / 100);
+}
+
+function getAge(human) {
+    return human.died - human.born;
+}
+
+const ageByCentury = ANCESTRY_DATA.reduce(
+    function (result, human) {
+        const humanCentury = getCentury(human);
+        const humanAge = getAge(human);
+
+        if (!result[humanCentury]) {
+            result[humanCentury] = [];
+        }
+
+        result[humanCentury].push(humanAge);
+
+        return result;
+    },
+    {}
+)
+
+for (const century in ageByCentury) {
+    ageByCentury[century] = getArrAverage(ageByCentury[century]);
+}
+
+console.log(
+    'средний возраст людей для каждого из столетий',
+    ageByCentury
+);
