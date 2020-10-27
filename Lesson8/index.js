@@ -60,12 +60,6 @@ function makeCalendar(selector, year, month) {
     calendar.init();
     calendar.fill();
 
-    function getLastDayNumberOfMonthInYear(year, month) {
-        const currentDate = new Date(year, month, 0);
-
-        return currentDate.getDate();
-    }
-
     function getTitle() {
         return MONTH_NAMES[calendar.month - 1] + ' ' + calendar.year;
     }
@@ -128,7 +122,7 @@ function makeCalendar(selector, year, month) {
     return calendar;
 }
 
-const calendar = makeCalendar('.test-calendar'); // LE = { getLastDayNumberOfMonthInYear: f, calendar: {} }
+const calendar = makeCalendar('.test-calendar');
 const calendar2 = makeCalendar('.second-calendar', 2020, 8);
 
 console.log( 'calendar', calendar );
