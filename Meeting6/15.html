@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game 15</title>
+    <style>
+        .board {
+            width: 40vw;
+            height: 40vw;
+
+            border: 1px solid;
+
+            position: relative;
+
+            box-sizing: border-box;
+        }
+
+        .board__item {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            display: flex;
+            width: 25%;
+            height: 25%;
+            justify-content: center;
+            align-items: center;
+
+            box-sizing: border-box;
+            border: 1px solid;
+            font-size: 5em;
+        }
+    </style>
+    <script src="game15.js" defer></script>
+</head>
+<body>
+
+    <div class="board">
+        <div class="board__item" style="top: 0; left: 0;">1</div>
+        <div class="board__item" style="top: 25%; left: 25%;">2</div>
+        <div class="board__item" style="top: 50%; left: 75%;">3</div>
+        <div class="board__item" style="top: 75%; left: 50%;">4</div>
+        <div class="board__item">5</div>
+        <div class="board__item">6</div>
+        <div class="board__item">7</div>
+        <div class="board__item">8</div>
+        <div class="board__item">9</div>
+        <div class="board__item">10</div>
+        <div class="board__item">11</div>
+        <div class="board__item">12</div>
+        <div class="board__item">13</div>
+        <div class="board__item">14</div>
+        <div class="board__item">15</div>
+    </div>
+
+</body>
+</html>

@@ -74,3 +74,8 @@
     top: 10%;
     left: 10%;
 }
+
+.cross__board-item:hover {
+    background-color: rgba(155, 224, 250, 0.16);
+    cursor: pointer;
+}
