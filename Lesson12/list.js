@@ -1,3 +1,5 @@
+export { List };
+
 function List(props) {
     this._props = props;
     this._listEl = document.querySelector(props.selector);

@@ -1,4 +1,4 @@
-function AddTaskForm(props) {
+export function AddTaskForm(props) {
     // this = {};
     // this.__proto__ = AddTaskForm.prototype;
 
@@ -36,5 +36,3 @@ AddTaskForm.prototype.addTask = function (e) {
         this._props.addTaskHandler(task);
     }
 }
-
-console.dir(AddTaskForm);

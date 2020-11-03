@@ -1,14 +1,25 @@
-class Task {
+export default class Task {
+    static parse(taskAsString) {
+        return JSON.parse(taskAsString);
+    }
+
     constructor(task, props) {
         // this = {}
         // this.__proto__ = Task.prototype
 
         this._task = task;
         this._props = props;
+        this._editing = false;
+
+        this.dbClickistener = this._clickByTitleEl().bind(this);
 
         this.createTaskElement();
 
         // return this;
+    }
+
+    toString() {
+        return JSON.stringify(this._task);
     }
 
     createTaskElement() {
@@ -41,13 +52,121 @@ class Task {
         this._toggleEl = toggleEl;
         this._taskEl = rootEl;
 
+        toggleEl.addEventListener(
+            'change',
+            this._completeTaskListener.bind(this)
+        );
+
+        titleEl.addEventListener(
+            'click',
+            this.dbClickistener
+        );
+
+        editEl.addEventListener(
+            'submit',
+            this.submitEditing.bind(this)
+        );
+
+        destroyBtn.addEventListener(
+            'click',
+            this.destroy.bind(this)
+        );
+
         this._fill();
+    }
+
+    _clickByTitleEl() {
+        let eventTimeStamp = null;
+        let timeoutId = null;
+
+        return function (e) {
+            if (!eventTimeStamp || e.timeStamp - eventTimeStamp > 300 ) {
+                eventTimeStamp = e.timeStamp;
+                // eventTimeStamp = Date.now();
+
+                timeoutId = setTimeout(
+                    () => {
+                        eventTimeStamp = null;
+                    },
+                    300
+                );
+            } else {
+                eventTimeStamp = null;
+                clearTimeout(timeoutId);
+                timeoutId = null;
+
+                this.activateEdit();
+            }
+
+        }
+    }
+
+    deactivateEdit() {
+        this._editing = false;
+
+        this._fill();
+    }
+
+    activateEdit() {
+        this._editing = true;
+
+        this._fill();
+    }
+
+    destroy() {
+        console.log(this._taskEl);
+        this._taskEl.remove();
+
+        // TODO: send event to app
+    }
+
+    submitEditing(e) {
+        e.preventDefault();
+        console.log( this._changeTextEl.value );
+
+        if (!this._changeTextEl.value.trim()) {
+            return ;
+        }
+
+        const newTask = {
+            ...this._task,
+            text: this._changeTextEl.value
+        }
+
+        this._task = newTask;
+
+        this.deactivateEdit();
+
+        if (this._props.changeHandler) {
+            this._props.changeHandler(this);
+        }
+    }
+
+    _completeTaskListener() {
+        const newTask = {
+            ...this._task,
+            completed: this._toggleEl.checked
+        }
+
+        this._task = newTask;
+
+        this._fill();
+
+        if (this._props.changeHandler) {
+            this._props.changeHandler(this);
+        }
     }
 
     _fill() {
         this._toggleEl.checked = this._task.completed;
         this._titleEl.innerText = this._task.text;
-        this._changeTextEl = this._task.text;
+        this._changeTextEl.value = this._task.text;
+
+        if (this._editing) {
+            this._taskEl.classList.add('editing');
+        } else {
+            this._taskEl.classList.remove('editing');
+        }
     }
 
     render() {
@@ -55,4 +174,4 @@ class Task {
     }
 }
 
-console.dir(Task);
+export { Task };
