@@ -5,6 +5,11 @@ class Timer {
         this.createElement();
     }
 
+    refresh() {
+        this.currentTimeShift = 0;
+        this.startPosition = null;
+    }
+
     createElement() {
         this.rootEl = document.createElement('div');
         this.rootEl.classList.add('timer');

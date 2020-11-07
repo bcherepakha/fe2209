@@ -1,8 +1,23 @@
+import { Confirm } from '../Meeting7/Confirm/index.js';
+
 const game = {
     boardEl: document.querySelector('.board'),
-    board: suffleArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 ])
-    // boardItems: {1: new Tile()}
+    board: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0, 15 ],
+    getPositionByIndex,
+    suffleArr,
+    step,
+    isWin,
+    render,
+    init,
+    clickByItem,
+    afterStep,
+    startNewGame,
+    timer: new Timer(),
+    steps: 0
 }
+
+game.init();
+game.render();
 
 // idx = 0 ... 15
 function getPositionByIndex(idx) {
@@ -22,6 +37,8 @@ function suffleArr(arr) {
 }
 
 function step(num) {
+    this.timer.start();
+
     const numIdx = game.board.findIndex(function(el) {
         return el === num;
     });
@@ -35,23 +52,90 @@ function step(num) {
         left: numIdx % 4 === 0 ? null : numIdx - 1,
     };
 
-    console.log({ numIdx, emptyIdx });
-
     if (Object.values(siblingsIdx).includes(emptyIdx)) {
         // i can do step
         game.board[emptyIdx] = num;
         game.board[numIdx] = 0;
-    }
+        game.steps++;
 
-    console.warn('can\'t do step');
+        game.render();
+    }
 }
 
 function isWin() {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 ].join() === game.board.join();
 }
 
-console.log( suffleArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) );
-console.log( game );
+function init() {
+    this.boardItems = this.board
+        .reduce((collection, num) => {
+            if (num === 0) {
+                return collection;
+            }
 
-step(5);
-console.log( isWin() );
+            const el = document.createElement('div');
+
+            el.classList.add('board__item');
+            el.innerText = num;
+            el.addEventListener('click', this.clickByItem.bind(this, num));
+
+            collection[num] = el;
+
+            return collection;
+        },
+        {});
+
+    this.boardEl.append( ...Object.values(this.boardItems) );
+    this.boardEl.addEventListener('transitionend', this.afterStep.bind(this));
+    document.body.append(this.timer.render());
+}
+
+function clickByItem(num, e) {
+    this.step(num);
+}
+
+function render() {
+    this.board.forEach((num, idx) => {
+        if (num !== 0) {
+            const position = this.getPositionByIndex(idx);
+            this.boardItems[num].style.top = position.top;
+            this.boardItems[num].style.left = position.left;
+        }
+    });
+}
+
+function afterStep() {
+    if (this.isWin()) {
+        this.timer.pause();
+        const confirmBody = document.createElement('ul');
+        const confirmSteps = document.createElement('li');
+        const confirmTimer = document.createElement('li');
+
+        confirmBody.append(confirmSteps, confirmTimer);
+        confirmSteps.innerText = `Steps: ${this.steps}`;
+        confirmTimer.innerText = `Time: ${this.timer.getTimeAsString()}`;
+
+        const confirmWindow = new Confirm({
+            title: 'You win',
+            contentHTML: confirmBody,
+            actions: [
+                {
+                    title: 'Refresh game',
+                    action: () => {
+                        confirmWindow.hide();
+                        this.startNewGame();
+                    },
+                }
+            ]
+        });
+
+        confirmWindow.show();
+    }
+}
+
+function startNewGame() {
+    this.board = this.suffleArr(this.board);
+    this.timer.refresh();
+    this.timer.start();
+    this.render();
+}

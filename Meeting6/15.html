@@ -28,30 +28,21 @@
             align-items: center;
 
             box-sizing: border-box;
-            border: 1px solid;
+            border: 2px solid #000;
             font-size: 5em;
+
+            transition: all .6s ease-in 0s;
+            will-change: top, left;
         }
     </style>
-    <script src="game15.js" defer></script>
+    <link rel="stylesheet" href="../Meeting7/Modal/modal.css">
+    <script src="timer.js" defer></script>
+    <script src="../Meeting7/Confirm/index.js" type='module'></script>
+    <script src="game15.js" type='module'></script>
 </head>
 <body>
 
     <div class="board">
-        <div class="board__item" style="top: 0; left: 0;">1</div>
-        <div class="board__item" style="top: 25%; left: 25%;">2</div>
-        <div class="board__item" style="top: 50%; left: 75%;">3</div>
-        <div class="board__item" style="top: 75%; left: 50%;">4</div>
-        <div class="board__item">5</div>
-        <div class="board__item">6</div>
-        <div class="board__item">7</div>
-        <div class="board__item">8</div>
-        <div class="board__item">9</div>
-        <div class="board__item">10</div>
-        <div class="board__item">11</div>
-        <div class="board__item">12</div>
-        <div class="board__item">13</div>
-        <div class="board__item">14</div>
-        <div class="board__item">15</div>
     </div>
 
 </body>
