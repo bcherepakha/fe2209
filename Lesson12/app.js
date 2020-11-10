@@ -1,10 +1,13 @@
 import Task from './task.js';
 import { AddTaskForm } from './addTaskForm.js';
 import { List } from './list.js';
+import TaskCounter from './taskCoounter.js';
+import Filter from './filter.js';
 
 const app = {
     state: {
-        tasks: []
+        tasks: [],
+        currentFilter: ''
     },
     storageKey: 'todoListTasks',
     addTaskForm: new AddTaskForm({
@@ -14,6 +17,18 @@ const app = {
     list: new List({
         selector: '.todo-list'
     }),
+    counter: new TaskCounter({
+        selector: '.todo-count strong'
+    }),
+    filter: new Filter({
+        selector: '.filters a',
+        onChange: changeFilterHandler
+    }),
+
+    taskFilters: {
+        '#/active': task => !task.isCompleted(),
+        '#/completed': task => task.isCompleted()
+    },
 
     saveTaskToLocalStorage() {
         saveTaskToLocalStorage(
@@ -28,14 +43,28 @@ const app = {
     },
 
     setState(newState) {
+        const { currentFilter: oldFilter } = this.state;
+
         this.state = {
             ...this.state,
             ...newState
         }
 
+        const { currentFilter } = this.state;
+        let items;
+
+        if (this.taskFilters[currentFilter]) {
+            items = this.state.tasks
+                .filter(task => this.taskFilters[currentFilter](task));
+        } else {
+            items = this.state.tasks;
+        }
+
         this.saveTaskToLocalStorage();
-        app.list.changeProps({ items: this.state.tasks });
+        this.list.changeProps({ items: items }, oldFilter !== currentFilter);
+        this.counter.changeProps({ count: items.length });
     },
+
     init() {
         if (!localStorage[this.storageKey]) {
             return ;
@@ -56,7 +85,10 @@ const app = {
                     return createTask(task);
                 });
 
-            app.setState({ tasks });
+            app.setState({
+                tasks,
+                currentFilter: app.filter.getCurrentFilter()
+            });
 
         } catch (ex) {
             return ;
@@ -77,7 +109,8 @@ app.init();
 function createTask(task) {
     return new Task(task, {
         element: 'li',
-        changeHandler: changeTaskHandler
+        changeHandler: changeTaskHandler,
+        deleteHandler: deleteTaskHandler
     });
 }
 
@@ -96,4 +129,14 @@ function saveTaskToLocalStorage(key, value) {
 
 function changeTaskHandler() {
     app.saveTaskToLocalStorage();
+}
+
+function deleteTaskHandler(taskObj) {
+    app.setState({
+        tasks: app.state.tasks.filter((t) => t !== taskObj)
+    });
+}
+
+function changeFilterHandler(currentFilter) {
+    app.setState({ currentFilter });
 }

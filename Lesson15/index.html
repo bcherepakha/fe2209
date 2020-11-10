@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 15</title>
+    <script src="index.js" defer></script>
+    <style>
+        .square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 300px;
+            height: 300px;
+            background: blue;
+
+            transform: scale(0);
+            opacity: 0;
+
+            transition: all .7s ease-in 0s;
+            will-change: transform, opacity;
+        }
+
+        .square--scaled {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .square--rotated {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+        }
+
+        .circle {
+            display: block;
+
+            width: 80%;
+            height: 80%;
+
+            border-radius: 50%;
+
+            background: red;
+
+            transform: scale(0);
+            opacity: 0;
+
+            transition: transform 0.5s ease-in 0s;
+        }
+
+        .circle--shown {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="square">
+        <div class="circle"></div>
+    </div>
+    <div class="controls">
+        <button class="start-animation">Start animation</button>
+    </div>
+</body>
+</html>

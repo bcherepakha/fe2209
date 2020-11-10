@@ -3,6 +3,10 @@ export default class Task {
         return JSON.parse(taskAsString);
     }
 
+    isCompleted() {
+        return this._task.completed;
+    }
+
     constructor(task, props) {
         // this = {}
         // this.__proto__ = Task.prototype
@@ -114,10 +118,11 @@ export default class Task {
     }
 
     destroy() {
-        console.log(this._taskEl);
         this._taskEl.remove();
 
-        // TODO: send event to app
+        if (this._props.deleteHandler) {
+            this._props.deleteHandler(this);
+        }
     }
 
     submitEditing(e) {
