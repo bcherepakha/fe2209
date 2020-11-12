@@ -44,6 +44,7 @@ const app = {
 
     setState(newState) {
         const { currentFilter: oldFilter } = this.state;
+        const oldCounter = this.counter.getCounter();
 
         this.state = {
             ...this.state,
@@ -61,7 +62,10 @@ const app = {
         }
 
         this.saveTaskToLocalStorage();
-        this.list.changeProps({ items: items }, oldFilter !== currentFilter);
+        this.list.changeProps(
+            { items: items },
+            oldFilter !== currentFilter || oldCounter !== items.length
+        );
         this.counter.changeProps({ count: items.length });
     },
 
@@ -128,7 +132,7 @@ function saveTaskToLocalStorage(key, value) {
 }
 
 function changeTaskHandler() {
-    app.saveTaskToLocalStorage();
+    app.setState({});
 }
 
 function deleteTaskHandler(taskObj) {

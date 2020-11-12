@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 16</title>
+    <script src="beer.js" defer></script>
+    <style>
+        label {
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <form class="get-beer">
+        <label>
+            Beer name:
+            <input
+                name="beer_name"
+                value="Blonde"
+                type="text"
+                class="get-beer-name"/>
+        </label>
+        <input
+            name="page"
+            value="1"
+            type="hidden">
+        <label>
+            Elements on page
+            <select name="per_page">
+                <option value="20">20</option>
+                <option selected value="40">40</option>
+                <option value="60">60</option>
+            </select>
+        </label>
+        <div>
+            <button type="submit">Get</button>
+        </div>
+    </form>
+    <ul class="beers">
+    </ul>
+</body>
+</html>

@@ -6,6 +6,10 @@ export default class TaskCounter {
         this.render();
     }
 
+    getCounter() {
+        return +this._props.count || 0;
+    }
+
     changeProps(newProps) {
         this._props = {
             ...this._props,
