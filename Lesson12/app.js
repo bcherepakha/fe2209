@@ -3,6 +3,7 @@ import { AddTaskForm } from './addTaskForm.js';
 import { List } from './list.js';
 import TaskCounter from './taskCoounter.js';
 import Filter from './filter.js';
+import api from './api.js';
 
 const app = {
     state: {
@@ -24,6 +25,8 @@ const app = {
         selector: '.filters a',
         onChange: changeFilterHandler
     }),
+    api,
+    loader: new ldLoader({ root: ".loader" }),
 
     taskFilters: {
         '#/active': task => !task.isCompleted(),
@@ -69,34 +72,58 @@ const app = {
         this.counter.changeProps({ count: items.length });
     },
 
-    init() {
+    async init() {
         if (!localStorage[this.storageKey]) {
             return ;
         }
 
+        this.loader.on();
+        // this.api.getTasks()
+        //     .then(data => data.map(createTask))
+        //     .then(tasks => {
+        //         app.setState({
+        //             tasks,
+        //             currentFilter: app.filter.getCurrentFilter()
+        //         });
+        //     })
+        //     .then(() => this.loader.off())
+        //     .catch(error => console.log(error));
+
         try {
-
-            const tasks = JSON.parse(localStorage[this.storageKey])
-                .map((taskAsString) => {
-                    try {
-                        return Task.parse(taskAsString);
-                    } catch (ex) {
-                        return null;
-                    }
-                })
-                .filter(taskOrNull => !!taskOrNull)
-                .map(task => {
-                    return createTask(task);
-                });
-
+            const data = await this.api.getTasks();
+            const tasks = data.map(createTask);
             app.setState({
                 tasks,
                 currentFilter: app.filter.getCurrentFilter()
             });
-
-        } catch (ex) {
-            return ;
+        } catch(error) {
+            console.log(error);
         }
+
+        this.loader.off();
+
+        // try {
+        //     const tasks = JSON.parse(localStorage[this.storageKey])
+        //         .map((taskAsString) => {
+        //             try {
+        //                 return Task.parse(taskAsString);
+        //             } catch (ex) {
+        //                 return null;
+        //             }
+        //         })
+        //         .filter(taskOrNull => !!taskOrNull)
+        //         .map(task => {
+        //             return createTask(task);
+        //         });
+
+        //     app.setState({
+        //         tasks,
+        //         currentFilter: app.filter.getCurrentFilter()
+        //     });
+
+        // } catch (ex) {
+        //     return ;
+        // }
     }
 }
 
@@ -118,13 +145,27 @@ function createTask(task) {
     });
 }
 
-function addTask(task) {
-    const taskObj = createTask(task);
-    const { tasks } = app.state; // tasks = app.state.tasks
+async function addTask(task) {
+    // app.api.createTask(task)
+    //     .then(taskData => {});
+    app.loader.on();
+    try {
+        const taskData = await app.api.createTask(task);
+        const taskObj = createTask(taskData);
+        const { tasks } = app.state; // tasks = app.state.tasks
 
-    tasks.push(taskObj);
+        tasks.push(taskObj);
 
-    app.setState({ tasks });
+        app.setState({ tasks });
+
+        app.loader.off();
+        return { status: 'OK' };
+    } catch (ex) {
+        console.log(ex);
+
+        app.loader.off();
+        return { status: 'error', message: ex.message };
+    }
 }
 
 function saveTaskToLocalStorage(key, value) {
@@ -132,13 +173,31 @@ function saveTaskToLocalStorage(key, value) {
 }
 
 function changeTaskHandler() {
+    // TODO: update task
     app.setState({});
 }
 
 function deleteTaskHandler(taskObj) {
-    app.setState({
-        tasks: app.state.tasks.filter((t) => t !== taskObj)
-    });
+    app.loader.on();
+
+    app.api.deleteTask(taskObj.getId())
+        .then(response => response.json())
+        .then(task => {
+            if (task.id !== taskObj.getId()) {
+                console.log('Error task deleted');
+            }
+
+            taskObj.remove();
+            app.setState({
+                tasks: app.state.tasks.filter((t) => t !== taskObj)
+            });
+        })
+        .then(() => app.loader.off())
+        .catch((error) => {
+            console.log(error);
+            // app.setState({});
+            app.loader.off();
+        });
 }
 
 function changeFilterHandler(currentFilter) {

@@ -46,7 +46,7 @@ body {
 	margin: 130px 0 40px 0;
 	position: relative;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+		0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .todoapp input::-webkit-input-placeholder {
@@ -103,9 +103,9 @@ body {
 	padding: 16px 16px 16px 0;
 	border: none;
 	background: rgba(0, 0, 0, 0.003);
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-    margin-left: 60px;
-    width: calc(100% - 60px);
+	box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+	margin-left: 60px;
+	width: calc(100% - 60px);
 }
 
 .main {
@@ -114,8 +114,7 @@ body {
 	border-top: 1px solid #e6e6e6;
 }
 
-.complete-all-label
-{
+.complete-all-label {
 	width: 60px;
 	height: 60px;
 	font-size: 0;
@@ -123,37 +122,38 @@ body {
 	top: 2px;
 	left: 2px;
 	transform: rotate(90deg);
-    cursor: pointer;
+	cursor: pointer;
 
-    z-index: 2;
+	z-index: 2;
 }
 
 .complete-all {
 	text-align: center;
-	border: none; /* Mobile Safari */
+	border: none;
+	/* Mobile Safari */
 	opacity: 0;
 	position: absolute;
 }
 
-.complete-all + span {
-    color: #e6e6e6;
+.complete-all+span {
+	color: #e6e6e6;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 
 }
 
-.complete-all:checked + span {
+.complete-all:checked+span {
 	color: #737373;
 }
 
-.complete-all + span:before {
+.complete-all+span:before {
 	content: '❯';
 	font-size: 22px;
 }
@@ -199,7 +199,8 @@ body {
 	top: 0;
 	bottom: 0;
 	margin: auto 0;
-	border: none; /* Mobile Safari */
+	border: none;
+	/* Mobile Safari */
 	-webkit-appearance: none;
 	appearance: none;
 }
@@ -208,13 +209,13 @@ body {
 	opacity: 0;
 }
 
-.todo-list li .toggle + span {
+.todo-list li .toggle+span {
 	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
 	background-repeat: no-repeat;
 	background-position: center left;
 }
 
-.todo-list li .toggle:checked + span {
+.todo-list li .toggle:checked+span {
 	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
 
@@ -283,10 +284,10 @@ body {
 	height: 50px;
 	overflow: hidden;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-	            0 8px 0 -3px #f6f6f6,
-	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
-	            0 16px 0 -6px #f6f6f6,
-	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+		0 8px 0 -3px #f6f6f6,
+		0 9px 1px -3px rgba(0, 0, 0, 0.2),
+		0 16px 0 -6px #f6f6f6,
+		0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .todo-count {
@@ -368,6 +369,7 @@ html .clear-completed:active {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
 	.toggle-all,
 	.todo-list li .toggle {
 		background: none;
@@ -397,76 +399,42 @@ html .clear-completed:active {
 	margin: -1px;
 }
 
-.loader
-{
-	position: fixed;
-
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-
-	display: none;
-	background: rgba(0, 0, 0, 0.4);
-
-	z-index: 9;
-}
-
-.loader--active {
-	display: block;
-}
-
-.loader__body
-{
-	position: absolute;
-
-	top: 50%;
-	left: 50%;
-
-	animation: rotate-loader 7s linear 0s infinite;
-}
-
-.loader__body::before,
-.loader__body::after
-{
-	content: '';
-	display: block;
-
-	position: absolute;
-
-	top: 0;
-	left: 0;
-
-	width: 16px;
-	height: 16px;
-
-	border-radius: 50%;
-
-	background: rgb(255, 0, 0);
-	transform-origin: 50% 50%;
-	transform: translateX(-50%) translateY(-50%) translateX(20px) translateY(20px);
-}
-
-.loader__body::after
-{
-	background: rgb(0,0,255);
-	transform: translateX(-50%) translateY(-50%) translateX(-20px) translateY(-20px);
-}
-
-@keyframes rotate-loader {
-	from {
-		transform: rotate(0) scale(1);
+@-moz-keyframes ldld-default {
+	0% {
+		transform: rotate(0)
 	}
-	25% {
-		transform: rotate(630deg) scale(2);
+
+	100% {
+		transform: rotate(360deg)
 	}
-	50% {
-		transform: rotate(1260deg) scale(1);
+}
+
+@-webkit-keyframes ldld-default {
+	0% {
+		transform: rotate(0)
 	}
-	75% {
-		transform: rotate(1890deg) scale(0.5);
+
+	100% {
+		transform: rotate(360deg)
 	}
-	to {
-		transform: rotate(2520deg) scale(1);
+}
+
+@-o-keyframes ldld-default {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+@keyframes ldld-default {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
 	}
 }

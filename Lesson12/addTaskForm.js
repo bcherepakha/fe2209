@@ -30,9 +30,16 @@ AddTaskForm.prototype.addTask = function (e) {
         completed: this._completeEl.checked
     }
 
-    this._textEl.value = '';
+
 
     if (this._props.addTaskHandler) {
-        this._props.addTaskHandler(task);
+        this._props.addTaskHandler(task)
+            .then(({ status }) => {
+                if (status === 'OK') {
+                    this._textEl.value = '';
+                }
+            });
+    } else {
+        this._textEl.value = '';
     }
 }

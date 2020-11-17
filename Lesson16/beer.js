@@ -62,3 +62,8 @@ function renderBeer(beerData) {
 
     return beerRootEl;
 }
+
+// state, props -> render
+// AppState
+// C -> data to AppState
+// C -> subscribe to AppState change -> render

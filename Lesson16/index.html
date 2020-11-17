@@ -10,6 +10,29 @@
             display: block;
             margin: 20px 0;
         }
+
+        .beer {
+            display: grid;
+            grid-template-columns: 20vw 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas: "title title" "img description";
+        }
+
+        .beer__title {
+            grid-area: title;
+        }
+
+        .beer__image {
+            grid-area: img;
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            object-position: center center;
+        }
+
+        .beer__description {
+            grid-area: description;
+        }
     </style>
 </head>
 <body>

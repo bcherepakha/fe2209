@@ -22,6 +22,10 @@ export default class Task {
         // return this;
     }
 
+    getId() {
+        return this._task.id;
+    }
+
     toString() {
         return JSON.stringify(this._task);
     }
@@ -117,17 +121,20 @@ export default class Task {
         this._fill();
     }
 
-    destroy() {
-        this._taskEl.remove();
+    remove() {
+        this._taskEl.remove();;
+    }
 
+    destroy() {
         if (this._props.deleteHandler) {
             this._props.deleteHandler(this);
+        } else {
+            this.remove();
         }
     }
 
     submitEditing(e) {
         e.preventDefault();
-        console.log( this._changeTextEl.value );
 
         if (!this._changeTextEl.value.trim()) {
             return ;
@@ -142,6 +149,7 @@ export default class Task {
 
         this.deactivateEdit();
 
+        // TODO: maybe used async
         if (this._props.changeHandler) {
             this._props.changeHandler(this);
         }
