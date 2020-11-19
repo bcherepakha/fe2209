@@ -2,6 +2,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	scroll-behavior: smooth;
 }
 
 button {
@@ -397,6 +398,12 @@ html .clear-completed:active {
 	height: 1px;
 	overflow: hidden;
 	margin: -1px;
+}
+
+.goToTheLastTask {
+	position: fixed;
+	bottom: 200px;
+	right: 200px;
 }
 
 @-moz-keyframes ldld-default {

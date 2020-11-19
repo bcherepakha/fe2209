@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 18</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="./router.js" type="module"></script>
+    <script src="./appState.js" type="module"></script>
+    <script src="./beerOptions.js" type="module"></script>
+    <script src="./beerList.js" type="module"></script>
+    <script src="./app.js" type="module"></script>
+</head>
+<body>
+    <aside class="aside">
+        <form class="beer-options">
+            <div class="beer-options__title">
+                ABV: крепость пива
+            </div>
+            <div class="beer-options__row">
+                <span class="beer-options__row-item">От</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="abv_gt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+                <span class="beer-options__row-item">До</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="abv_lt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+            </div>
+            <div class="beer-options__title">
+                IBU: горечь пива (0 - 100)
+            </div>
+            <div class="beer-options__row">
+                <span class="beer-options__row-item">От</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="ibu_gt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+                <span class="beer-options__row-item">До</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="ibu_lt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+            </div>
+            <div class="beer-options__title">
+                EBC: цвет пива (4 - 139)
+            </div>
+            <div class="beer-options__row">
+                <span class="beer-options__row-item">От</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="ebc_gt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+                <span class="beer-options__row-item">До</span>
+                <label class="beer-options__row-item">
+                    <input
+                        type="text"
+                        name="ebc_lt"
+                        inputmode="numeric"
+                        pattern="[0-9]*">
+                </label>
+            </div>
+            <div class="beer-options__title">
+                Дрожжи
+            </div>
+            <template id="yeastrow">
+                <li class="beer-options__list-item">
+                    <label class="beer-options__list-label">
+                        <input
+                            class="beer-options__list-checkbox"
+                            type="checkbox"
+                            name="yeast"
+                            value="Wyeast 1056 - American Ale">
+                        <span>Wyeast 1056 - American Ale</span>
+                    </label>
+                </li>
+            </template>
+            <ul class="beer-options__list beer-options__list--yeast">
+            </ul>
+            <div class="beer-options__title">
+                Подходящие продукты
+            </div>
+            <template id="foodrow">
+                <li class="beer-options__list-item">
+                    <label class="beer-options__list-label">
+                        <input
+                            class="beer-options__list-checkbox"
+                            type="checkbox"
+                            name="food_pairing[]"
+                            value="Fresh crab with lemon">
+                        Fresh crab with lemon
+                    </label>
+                </li>
+            </template>
+            <ul class="beer-options__list">
+            </ul>
+            <div class="beer-options__action">
+                <button type="submit">Поддобрать</button>
+            </div>
+        </form>
+    </aside>
+    <div class="header">
+        <a class="router-link router-link--catalog" href="#catalog">
+            Каталог
+        </a>
+        <form class="search">
+            <label class="search__label">
+                <span class="search__label-text">Поиск:</span>
+                <input class="search__input" type="text" name="beer_name" />
+            </label>
+            <button type="submit">
+                Искать
+            </button>
+        </form>
+        <a class="router-link router-link--favourites" href="#favourites">
+            Избранное
+        </a>
+    </div>
+    <main class="main">
+        <div class="beer-counter">Найдено: <span>0</span></div>
+        <template id="beercard">
+            <li class="beer-list__item">
+                <div class="beer-list__item-image-wrapper">
+                    <img src="https://images.punkapi.com/v2/keg.png" class="beer-list__image" alt="">
+                </div>
+                <div class="beer-list__title">
+                    Buzz
+                </div>
+                <div class="beer-list__description">
+                    A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.
+                </div>
+            </li>
+        </template>
+        <ul class="beer-list">
+        </ul>
+    </main>
+</body>
+</html>

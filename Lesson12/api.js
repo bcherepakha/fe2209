@@ -26,7 +26,14 @@ class API {
     }
 
     updateTask(taskData) {
-        // TODO: update task
+        return fetch(`${this._host}/${taskData.id}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(taskData)
+        })
+        .then(response => response.json());
         // url: `${this._host}/${taskData.id}`
         // method: 'PUT'
         // body + header: JSON

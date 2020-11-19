@@ -26,6 +26,16 @@ export default class Task {
         return this._task.id;
     }
 
+    getData() {
+        return {...this._task};
+    }
+
+    setData(newData) {
+        this._task = newData;
+
+        this._fill();
+    }
+
     toString() {
         return JSON.stringify(this._task);
     }
@@ -145,13 +155,13 @@ export default class Task {
             text: this._changeTextEl.value
         }
 
-        this._task = newTask;
-
-        this.deactivateEdit();
-
-        // TODO: maybe used async
         if (this._props.changeHandler) {
-            this._props.changeHandler(this);
+            this._props.changeHandler(this)
+                .then(() => this.deactivateEdit());
+        } else {
+            this._task = newTask;
+
+            this.deactivateEdit();
         }
     }
 
@@ -171,6 +181,7 @@ export default class Task {
     }
 
     _fill() {
+        this._taskEl.id = `task${this._task.id}`;
         this._toggleEl.checked = this._task.completed;
         this._titleEl.innerText = this._task.text;
         this._changeTextEl.value = this._task.text;

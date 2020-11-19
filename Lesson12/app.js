@@ -5,6 +5,8 @@ import TaskCounter from './taskCoounter.js';
 import Filter from './filter.js';
 import api from './api.js';
 
+const goToTheLastTaskLink = document.querySelector('.goToTheLastTask');
+
 const app = {
     state: {
         tasks: [],
@@ -96,6 +98,21 @@ const app = {
                 tasks,
                 currentFilter: app.filter.getCurrentFilter()
             });
+
+            const href = location.hash;
+
+            if (href) {
+                const scrollId = href.slice('#task'.length);
+                const scrollTaskObj = tasks.find(task => task.getId() === scrollId);
+
+                if (scrollTaskObj) {
+                    scrollTaskObj.render().scrollIntoView();
+                }
+            }
+
+            const lastTaskId = tasks[tasks.length - 1].getId();
+
+            goToTheLastTaskLink.href = `#task${lastTaskId}`;
         } catch(error) {
             console.log(error);
         }
@@ -157,6 +174,7 @@ async function addTask(task) {
         tasks.push(taskObj);
 
         app.setState({ tasks });
+        goToTheLastTaskLink.href= `#task${taskData.id}`;
 
         app.loader.off();
         return { status: 'OK' };
@@ -172,9 +190,21 @@ function saveTaskToLocalStorage(key, value) {
     localStorage[key] = value;
 }
 
-function changeTaskHandler() {
-    // TODO: update task
-    app.setState({});
+function changeTaskHandler(taskObj) {
+    app.loader.on();
+
+    return app.api.updateTask(taskObj.getData())
+        .then(newTaskData => {
+            taskObj.setData(newTaskData);
+        })
+        .then(() => {
+            app.setState({});
+            app.loader.off();
+        })
+        .catch(() => {
+            app.setState({});
+            app.loader.off();
+        });
 }
 
 function deleteTaskHandler(taskObj) {
